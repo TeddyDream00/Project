@@ -1,0 +1,140 @@
+import random
+import time
+name = input("Quel est votre nom ?")
+# Les 3 modes de difficulté du mode Normal
+e = random.randint(0,1000)
+m = random.randint(0,100000)
+h = random.randint(0, 1000000)
+
+print("BIENVENUE DANS LE JEU DU JUSTE PRIX" +" "+ str(name) + " " +"!!!!!"  )
+print("Appuyer sur la touche Y pour dire Oui" + "||" + "Appuyer sur la touche N pour dire Non")
+question = input("Souhaitez vous y participez ?")
+def play (): # Fonction de Jeu
+    def easy(): # Initialisation de la Fonction Easy
+        i = 10 # Indentateur = 10
+        while i >= 0 : # Tant que i est >= 0
+            print("Le nombre est compris entre 0 - 1.000")
+            print("Vous avez le droit à" + " "+ str(i) +" "+ "tentatives")
+            choice = (int(input("Choissisez votre nombre")))
+            if choice > 1000 or choice == "" :
+                print("Choissisez uniquement des nombres entiers compris entre 0 à 1000")
+                i = i + 1 # Incrémente de +1 pour chaque réponse supérieur à la limite définis par le mode
+            if choice < e :
+                i = i - 1 # Incrémente de -1 pour chaque réponse inférieur à la réponse du joueur
+                print("Plus Haut")
+                print("Il ne vous reste plus que" +""+ str(i))
+            elif choice > e :
+                i = i - 1 # Incrémente de -1 pour chaque réponse supérieur à la réponse du joueur
+                print("Plus Bas")
+                print("Il ne vous reste plus que" +""+ str(i))
+            else :
+                print("Félicitation tu as gagné")
+                diff_m = input("Voulez vous passez au niveau supérieur ?")
+                if diff_m == "y":
+                    medium()
+                elif diff_m == "n":
+                    print("Merci d'avoir joué")
+                    break
+                else :
+                    while diff_m != "y" or diff_m != "n" :
+                        diff_m = input("Voulez vous passez au niveau supérieur ?")
+                        if diff_m == "y":
+                            medium()
+                        elif diff_m == "n":
+                            print("Merci d'avoir joué")
+                            break
+
+    def medium(): # Initialisation de la Fonction Medium
+        i = 15
+        while i >= 0 :
+            print("Le nombre est compris entre 0 - 100.000")
+            print("Vous avez le droit à" +" "+str(i) + " " + "tentatives")
+            choice = (int(input("Choissisez votre nombre")))
+            if choice > 100000 or choice == "":
+                print("Choissisez uniquement des nombres entiers compris entre 0 à 100.000")
+                i = i + 1
+            if choice < m :
+                i = i - 1
+                print("Plus Haut")
+                print("Il ne vous reste plus que" +" "+str(i))
+            elif choice > m :
+                i = i - 1
+                print("Plus Bas")
+                print("Il ne vous reste plus que" +" "+ str(i))
+            elif i < 0 :
+                print("GAME OVER" + str(name))
+            else:
+                print("Félicitation tu as gagné")
+                diff_h = input("Voulez vous passez au niveau Ultime ?")
+                if diff_h == "h" :
+                    hard()
+                else :
+                    print("Merci d'avoir joué")
+                    break
+
+    def hard():
+        i = 20
+        while i >= 0 :
+            print("Le nombre est compris entre 0 - 1.000.000")
+            print("Vous avez le droit à" +" "+str(i) +" " + "tentatives")
+            choice = (int(input("Choissisez votre nombre")))
+            if choice > 1000000 or choice == "":
+                print("Choissisez uniquement des nombres entiers compris entre 0 à 1.000.000")
+                i = i + 1
+            if choice < h :
+                i = i - 1
+                print("Plus Haut")
+                print("Il ne vous reste plus que" +" "+ str(i))
+            elif choice > h :
+                i = i - 1
+                print("Plus Bas")
+                print("Il ne vous reste plus que" +" "+ str(i))
+            elif i < 0 :
+                print("GAME OVER" + str(name))
+            else :
+                print("Félicitation tu as Terminé le jeu")
+                print("Merci d'avoir joué")
+                break
+    print("E = Easy")
+    print("M = Medium")
+    print("H = Hard")
+
+    diff = input("Choissisez la difficulté ?")
+
+    if diff == "e" :
+        easy()
+    elif diff == "m" :
+        medium()
+    elif diff == "h" :
+        hard()
+    else :
+        while diff != "e" or diff != "m" or diff != "h":
+            print("Erreur veuillez choisir votre mode de difficultés")
+            print("E = Easy")
+            print("M = Medium")
+            print("H = Hard")
+            diff = input("Choissisez la difficulté ? ")
+            if diff == "e":
+                easy()
+            elif diff == "m":
+                medium()
+            elif diff == "h":
+                hard()
+
+if question == "y" :
+    play()
+elif question == "n" :
+    print("Merci d'avoir joué")
+else :
+    while question != "y" or question != "n" :
+        question = input("Souhaitez vous y participez ?")
+        print("Appuyer sur la touche Y pour dire Oui" + "||" + "Appuyer sur la touche N pour dire Non")
+        if question == "y":
+            play()
+        elif question == "n":
+            print("Merci d'avoir joué")
+            break
+
+
+
+
